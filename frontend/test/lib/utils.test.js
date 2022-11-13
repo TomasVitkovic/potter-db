@@ -1,31 +1,35 @@
 import React from "react";
 import { render, screen } from "../test-utils";
-import getGithubUrl from "../../src/lib/utils";
-import getHouseColor from "../../src/lib/utils";
+import {getGithubUrl} from "../../src/lib/utils";
+import {getHouseColor} from "../../src/lib/utils";
+import {getApiUrl} from "../../src/lib/utils";
 
-describe("Utils Testing", () => {
+describe("Utils Testing", () => {  
+  //nezaujima nas vysledok, ale ci doslo k volaniu
+  //ci sa vykonali vsetky ocakavane akcie
+  //returnvalue -> hodnota, kt sa vrati ked bude zavolany mock
+  test("Test of calling APIs URL with mock", () => { 
+    //const githubUrl = getGithubUrl();
+    const apiUrl = getApiUrl();
+
+    const mock1 = jest.fn().mockImplementation(getGithubUrl);
+    mock1.mockReturnValue("test");
+    mock1(getGithubUrl);
+    mock1(getGithubUrl);    
+    expect(mock1).toHaveBeenCalledTimes(2);
+    expect(mock1).toHaveBeenCalledWith(getGithubUrl);
+    expect(mock1(getGithubUrl)).toBe("test");
+
+    const mock2 = jest.fn().mockImplementation(() => "https://api.potterdb.com"); 
+    expect(mock2(apiUrl)).toBe("https://api.potterdb.com");
+    expect(mock2).toHaveBeenCalledTimes(1);    
+    expect(mock2).toHaveBeenCalledWith(apiUrl);  
+  }); 
   test("Test of GitHub URL", () => { 
-    const getGithubUrl = () => {
-      return "https://github.com/danielschuster-muc/potter-db";
-    };    
     const githubUrl = getGithubUrl();    
     expect(githubUrl).toEqual("https://github.com/danielschuster-muc/potter-db"); 
   });
-  test("Test of Switch component", () => { 
-    const getHouseColor = (house) => {
-      switch (house) {
-        case "Gryffindor":
-          return "#ae0001";
-        case "Slytherin":
-          return "#2a623d";
-        case "Hufflepuff":
-          return "#ffdb00";
-        case "Ravenclaw":
-          return "#222f5b";
-        default:
-          return "#bebebe";
-      }
-    };
+  test("Test of Switch component", () => {   
     const color = getHouseColor("Gryffindor")
     expect(color).toEqual("#ae0001");
     const color2 = getHouseColor("Slytherin")
@@ -37,10 +41,7 @@ describe("Utils Testing", () => {
     const color5 = getHouseColor()
     expect(color5).toEqual("#bebebe"); 
   });
-  test("Test of Api URL", () => { 
-    const getApiUrl = () => {
-      return process.env.NEXT_PUBLIC_API_URL || "https://api.potterdb.com";
-    };  
+  test("Test of Api URL", () => {   
     const apiUrl = getApiUrl();    
     expect(apiUrl).toEqual("https://api.potterdb.com");    
   });
