@@ -15,9 +15,7 @@ describe("AboutContent Page", () => {
     expect(heading).toBeInTheDocument();
     expect(heading2).toBeInTheDocument();
   });
- 
-    // const heading = screen.getByRole('link', { name: 'https://github.com/danielschuster-muc/potter-db' }); 
-   // expect(heading).toBeInTheDocument();
+  
   const tools = [
     {
       name: "Ruby on Rails",
