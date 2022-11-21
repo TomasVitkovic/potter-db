@@ -3,7 +3,7 @@ orbs:
   node: circleci/node@5.0.2
 jobs:
   build-and-test:
-    working-directory: frontend    
+    working_directory: frontend    
     docker:
       - image: "cimg/base:stable"
     steps:
