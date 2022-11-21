@@ -7,7 +7,7 @@ import {getApiUrl} from "../../src/lib/utils";
 describe("Utils Testing", () => {  
   //nezaujima nas vysledok, ale ci doslo k volaniu
   //ci sa vykonali vsetky ocakavane akcie
-  //returnvalue -> hodnota, kt sa vrati ked bude zavolany mock
+  //returnvalue -> hodnota, kt sa vrati ked bude zavolany mock  
   test("Test of calling APIs URL with mock", () => { 
     //const githubUrl = getGithubUrl();
     const apiUrl = getApiUrl();
