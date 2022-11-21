@@ -7,9 +7,9 @@ workflows:
 
 jobs:
   test:
+    working_directory: ~/frontend
     docker:
-      - image: cimg/node:14.13.0
-    working_directory: ~/frontend  
+      - image: cimg/node:14.13.0     
     steps:
       - checkout    
       - run:
