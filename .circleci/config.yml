@@ -7,12 +7,12 @@ workflows:
 
 jobs:
   test:
-    working_directory: potter-db/frontend
+    working_directory: ~/frontend
     docker:
       - image: cimg/node:14.13.0     
     steps:
       - checkout:
-          path: potter-db/frontend    
+          path: ~/frontend    
       - run:
           name: Install dependencies
           command: npm install
