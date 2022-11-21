@@ -2,7 +2,8 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 jobs:
-  build-and-test:    
+  build-and-test:
+    working-directory: frontend    
     docker:
       - image: "cimg/base:stable"
     steps:
@@ -11,7 +12,7 @@ jobs:
           node-version: "12.22"
       - node/install-packages
       - run:
-          app-dir: ~/frontend
+          app-dir: frontend
           command: npm run test
 workflows:
   build-and-test:
