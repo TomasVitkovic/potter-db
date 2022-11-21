@@ -9,6 +9,7 @@ jobs:
   test:
     docker:
       - image: cimg/node:14.13.0
+    working_directory: ~/frontend  
     steps:
       - checkout    
       - run:
